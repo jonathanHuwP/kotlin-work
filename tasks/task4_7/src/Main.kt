@@ -2,18 +2,22 @@
 
 import kotlin.system.exitProcess
 import kotlin.io.path.Path
+import java.io.File
 import kotlin.io.path.readText
 
-fun processLines(lines: String): String{
+data class Line(val contents: String, val length: Int)
+
+fun processLines(inFile: File): Line{
     var currentLongest = -1
     var longest: String = ""
-    for (line in lines.split('\n')){
-        if (line.length > currentLongest){
-            longest = line
-            currentLongest = line.length
+    inFile.forEachLine{
+        if (it.length > currentLongest){
+            longest = it
+            currentLongest = it.length
         }
     }
-    return longest
+
+    return Line(longest, currentLongest)
 }
 
 fun main(args: Array<String>){
@@ -22,11 +26,16 @@ fun main(args: Array<String>){
         exitProcess(1)
     }
 
-    val longest = with(Path(args[0])){
-        println(args[0])
-        processLines(this.readText())
+    println("For file: ${args[0]}")
+
+    val longest = with(File(args[0])){
+        processLines(this)
     }
 
-    println("Longest:")
-    println(longest)
+    if (longest.length<1){
+        println("No longest found")
+    }else{
+        println("Length: ${longest.length}")
+        println(longest.contents)
+    }
 }
