@@ -5,23 +5,52 @@ import kotlin.test.assertEquals
 
 class GradeTest {
     @Test
-    fun `Mark of 55 gives a Pass`() {
-        assertEquals("Pass", grade(55))
+    fun `negative gives error`() {
+        assertEquals("?", grade(-10))
     }
+
     @Test
-    fun `Mark of 25 gives a Fail`() {
+    fun `tst illegal-fail boundary`() {
+        assertEquals("?", grade(-1))
+        assertEquals("Fail", grade(0))
+        assertEquals("Fail", grade(1))
+    }
+
+    @Test
+    fun `mid-range Fail`() {
         assertEquals("Fail", grade(25))
     }
+
     @Test
-    fun `Mark of 85 gives a Distinction`() {
+    fun `test fail-pass boundary`() {
+        assertEquals("Fail", grade(39))
+        assertEquals("Pass", grade(40))
+        assertEquals("Pass", grade(41))
+    }
+
+    @Test
+    fun `mid-range Pass`() {
+        assertEquals("Pass", grade(55))
+    }
+
+    @Test
+    fun `test pass-distinction boundary`() {
+        assertEquals("Pass", grade(69))
+        assertEquals("Distinction", grade(70))
+        assertEquals("Distinction", grade(71))
+    }
+
+    @Test
+    fun `mid-range Distinction`() {
         assertEquals("Distinction", grade(85))
     }
+
     @Test
-    fun `Mark of 101 gives error`() {
+    fun `test distinction-illegal boundary`() {
+        assertEquals("Distinction", grade(99))
+        assertEquals("Distinction", grade(100))
         assertEquals("?", grade(101))
     }
-    @Test
-    fun `Mark of -1 gives error`() {
-        assertEquals("?", grade(-1))
-    }
+
+
 }
