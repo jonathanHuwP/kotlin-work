@@ -21,4 +21,6 @@ fun main(){
     println(numbers)
     numbers.clear()
     println(numbers)
+    // println(numbers.first()) exception
+    // println(numbers.last())  exception
 }
