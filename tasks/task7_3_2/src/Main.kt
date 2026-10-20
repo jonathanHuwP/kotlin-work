@@ -19,6 +19,12 @@ fun main(){
     println(numbers)
     numbers.removeAt(3)
     println(numbers)
+    val newNumbers = buildList{
+        for (num in numbers){
+            add(num)
+        }
+    }
+    println("new: $newNumbers")
     numbers.clear()
     println(numbers)
     // println(numbers.first()) exception
