@@ -4,8 +4,8 @@ import kotlin.io.path.Path
 import kotlin.io.path.appendText
 import kotlin.io.path.readText
 import kotlin.io.path.writeText
-import kotlin.io.bufferedReader
-import java.io.File
+import kotlin.io.path.forEachLine
+import kotlin.io.path.readLines
 
 const val FILE_NAME = "test.txt"
 
@@ -28,10 +28,10 @@ fun main(args: Array<String>) {
         }
     }
 
-    with(File(FILE_NAME).bufferedReader()){
-        val lines = this.readLines()
-        for (line in lines){
-            println(line)
-        }
+    Path(FILE_NAME).forEachLine(){it -> println(it)}
+
+    val lines = Path(FILE_NAME).readLines();
+    for (line in lines){
+        println(line)
     }
 }
