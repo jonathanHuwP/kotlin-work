@@ -12,7 +12,7 @@ fun main(args: Array<String>) {
 
     val timeWithout = measureTime {
         File(args[0]).readLines().filter { it.isNotBlank() }.filter { it.length < 10 }
-            .map { it.lowercase() }
+            .map { it.lowercase() }.toList()
     }
 
     val timeWith = measureTime {
