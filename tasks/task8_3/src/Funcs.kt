@@ -6,16 +6,21 @@ import kotlin.io.path.forEachLine
 typealias Record = Pair<String,Double>
 
 fun fetchData(filename: String) = buildList {
-    // Finish the implementation of this function
+    Path(filename).forEachLine{
+        val tmp = it.split(',')
+        add(Record(tmp[0].trim(), tmp[1].trim().toDouble()))
+    }
 }
+
+fun averageTemp(data: List<Record>) = data.sumOf{it.second}/data.size
 
 // Challenge: compute average temperature with one line of code
 // in main(), instead of using the function below!
 
-fun averageTemp(data: List<Record>): Double {
-    var sum = 0.0
-    for (record in data) {
-        sum += record.second
-    }
-    return sum / data.size
-}
+// fun averageTemp(data: List<Record>): Double {
+//     var sum = 0.0
+//     for (record in data) {
+//         sum += record.second
+//     }
+//     return sum / data.size
+// }

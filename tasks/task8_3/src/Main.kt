@@ -3,5 +3,10 @@
 import kotlin.system.exitProcess
 
 fun main(args: Array<String>) {
-    // Add your code here
+    if (args.size != 1){
+        println("Error: command line must have filename")
+        exitProcess(1)
+    }
+
+    println(averageTemp(fetchData(args[0])))
 }
