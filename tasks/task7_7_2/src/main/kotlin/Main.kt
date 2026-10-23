@@ -3,6 +3,10 @@
 const val CSV_FILENAME = "phone.csv"
 
 fun main() {
-    // Implement the main program here
-    // (You can add other functions to this file if you wish)
+    val db = createDatabase()
+    db.load(CSV_FILENAME)
+    for (key in db.keys){
+        println("$key => ${db[key]}")
+    }
+    db.save("out.csv")
 }
