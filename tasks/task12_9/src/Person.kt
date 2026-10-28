@@ -2,4 +2,16 @@
 
 import kotlinx.datetime.LocalDate
 
-class Person(val name: String, val birth: LocalDate)
+class Person private constructor(val name: String, val birth: LocalDate) {
+    companion object Factory {
+        private val names = mutableSetOf<String>()
+
+        fun create(name: String, birth: String): Person {
+            require(name !in names) { "Name must be unique!" }
+            names.add(name)
+            return Person(name, LocalDate.parse(birth))
+        }
+    }
+
+    override fun toString() = "<Person %s %s>".format(name, birth)
+}
