@@ -2,6 +2,6 @@
 
 class Student(name: String, val degree: String): Person(name) {
     init {
-        println("Student constructor invoked")
+        println("Student constructor invoked for $name on $degree")
     }
 }

@@ -2,6 +2,6 @@
 
 open class Person(val name: String) {
     init {
-        println("Person constructor invoked")
+        println("Person constructor invoked for $name")
     }
 }
