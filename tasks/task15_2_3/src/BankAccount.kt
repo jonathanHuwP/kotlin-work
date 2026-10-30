@@ -20,4 +20,6 @@ open class BankAccount(val holder: String) {
         require(amount <= balance) { "Withdrawal amount cannot exceed balance" }
         balance -= amount
     }
+
+    override fun toString() = "<Bank Account: $holder, $balance>"
 }
